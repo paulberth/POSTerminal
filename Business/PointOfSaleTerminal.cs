@@ -1,4 +1,4 @@
-﻿using Business.data;
+﻿using System.Data.Common;
 using Business.Interface;
 using Model.Model;
 
@@ -9,23 +9,21 @@ namespace Business
         private List<ShoppingCart> _shoppingCartList = new List<ShoppingCart>();
         private List<Product> _productList = new List<Product>();
 
-        public PointOfSaleTerminal()
+        public PointOfSaleTerminal(List<Product> productList)
         {
-
-
-
-            productRepository = new ProductRepository();
-            if (_productList.Count() == 0)
-                _productList = productRepository.GetProductList();
+            _productList = productList;
 
         }
 
-
+        public List<Product> GetProductList()
+        {
+            return _productList;
+        }
 
         public decimal CalculateTotal()
         {
             decimal total = 0;
-            if (_shoppingCartList.Count == 0) 
+            if (_shoppingCartList.Count == 0)
                 return total;
 
             var groupCartProduct = _shoppingCartList.GroupBy(o => new
@@ -63,10 +61,12 @@ namespace Business
         public void ScanProduct(string ProductCode)
         {
             var product = _productList.Where(t => t.ProductCode == ProductCode).FirstOrDefault();
-
-            if (product != null)
+            if (product == null)
             {
-
+                throw new ArgumentException("Product not found",nameof(ProductCode));
+            }
+            else
+            {
                 _shoppingCartList.Add(new ShoppingCart()
                 {
                     Products = product,
@@ -76,7 +76,23 @@ namespace Business
             }
         }
 
-        public IProductRepository productRepository { get; private set; }
+        public void SetPricing(string ProductCode,decimal UnitPrice, BulkPricing? bulkPricing = null)
+        {
+            foreach (var product in _productList.Where(t=>t.ProductCode==ProductCode))
+            {
+                product.UnitPrice = UnitPrice;
+                product.BulkPrice = bulkPricing;
+            }
+        }
+
+        public void SetPricing(string ProductCode, decimal UnitPrice)
+        {
+            foreach (var product in _productList.Where(t => t.ProductCode == ProductCode))
+            {
+                product.UnitPrice = UnitPrice;
+            }
+        }
+
     }
 
 }

@@ -1,4 +1,6 @@
-﻿namespace Business.Interface
+﻿using Model.Model;
+
+namespace Business.Interface
 {
     public interface IPointOfSaleTerminal
     {
@@ -6,7 +8,8 @@
         decimal CalculateTotal();
         void ScanProduct(string ProductCode);
 
-        IProductRepository productRepository { get; }
-
+        void SetPricing(string ProductCode, decimal UnitPrice);
+        void SetPricing(string ProductCode, decimal UnitPrice, BulkPricing? bulkPricing=null);
+        List<Product> GetProductList();
     }
 }
