@@ -18,9 +18,12 @@ B	$4.25
 C	$1.00 or $5 for a six pack
 D	$0.75
 
-Here are the minimal inputs you should use for your test cases. These test cases must be shown to work in your program:
+Here are the minimal inputs use for test cases.
 1. Scan these items in this order: ABCDABA; Verify the total price is $13.25.
 2. Scan these items in this order: CCCCCCC; Verify the total price is $6.00.
 3. Scan these items in this order: ABCD; Verify the total price is $7.25.
 
- 
+More Test Cases
+1. Add_Product_To_List - Initial Product Count-4, Add 3-(X,Y,Z). Total Product Count Must 7
+2. SetPricing - Set Price to ProductCode 'D' to Price 5. Scan: DDD; Total Price Must 15 
+3. SetPricing with BulkPrice - Set Price to ProductCode 'D' to Price 5 with BulkPricing 5 for $20. Scan: DDDDD;  
