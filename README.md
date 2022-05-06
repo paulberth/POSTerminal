@@ -1,4 +1,3 @@
-
 Build on C# .netcore 6.0
 Unit testing C# with NUnit and .NET Core
 
