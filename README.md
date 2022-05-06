@@ -1,5 +1,5 @@
 
-Build on .netcore 6.0
+Build on C# .netcore 6.0
 
 # POSTerminal
   Technical Exercise : Library for POS Ordering, Scan Product and Return Total Calculated Unit Price and Bulk Price. 
