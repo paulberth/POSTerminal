@@ -1,5 +1,6 @@
 
 Build on C# .netcore 6.0
+Unit testing C# with NUnit and .NET Core
 
 # POSTerminal
   Technical Exercise : Library for POS Ordering, Scan Product and Return Total Calculated Unit Price and Bulk Price. 
